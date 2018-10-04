@@ -1,33 +1,18 @@
-class CheckLines:
+class CheckInputs:
 
-    def __init__(self):
-        self.line1 = None
-        self.line2 = None
-        self.overlaps = False
+    def __init__(self, input1, input2):
+        try:
+            self.input1 = float(input1)
+            self.input2 = float(input2)
+        except ValueError:
+            print('Both inputs must be a number')
 
-    def set_lines(self):
-        """
-        Gets line1 and line2 values
-        """
-        self.line1 = [int(i) for i in str(input('enter first line: ')).rstrip().split(' ')]
-        self.line2 = [int(i) for i in str(input('enter second line: ')).rstrip().split(' ')]
+    def compare(self):
+        if self.input1 > self.input2:
+            return '{} greater than {}'.format(self.input1, self.input2)
 
-    def get_lines(self):
-        print("Lines {} and {} {}".format(self.line1, self.line2,
-                                          "overlaps" if a.do_lines_overlap() else "does not overlap"))
+        elif self.input1 == self.input2:
+            return '{} is equal {}'.format(self.input1, self.input2)
 
-    def do_lines_overlap(self):
-        """Checks if line1 and line2 overlaps
-        return: returns true is line1 and line2 overlaps
-        """
-        for i in self.line1:
-            if i in range(self.line2[0] , self.line2[1]):
-                self.overlaps = True
-
-        return self.overlaps
-
-
-if __name__ == "__main__":
-    a = CheckLines()
-    a.set_lines()
-    a.get_lines()
+        else:
+            return '{} less than {}'.format(self.input1, self.input2)
